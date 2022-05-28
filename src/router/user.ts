@@ -1,5 +1,6 @@
 import Login from '@/views/Login/Index.vue'
 import Register from '@/views/Register/Index.vue'
+import ForgotPassword from '@/views/ForgotPassword/Index.vue'
 import Layout from '@/layouts/NotLayout.vue'
 import authentication from '@/middleware/authentication'
 
@@ -22,6 +23,11 @@ const user = {
       path: 'register',
       name: 'Register',
       component: Register
+    },
+    {
+      path: 'forgot-password',
+      name: 'Forgot Password',
+      component: ForgotPassword
     }
   ]
 }

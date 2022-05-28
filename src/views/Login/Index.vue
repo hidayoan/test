@@ -30,7 +30,9 @@
               <router-link to="/auth/register">
                 <div class="forgot-password">Register now</div>
               </router-link>
-              <a class="forgot-password" href="https://oxfordinformatics.com/">Forgot password ?</a>
+              <router-link to="/auth/forgot-password">
+                <div class="forgot-password">Forgot password ?</div>
+              </router-link>
             </div>
           </el-form>
         </el-card>
@@ -40,20 +42,20 @@
 </template>
 
 <script lang="ts">
-import { isEmpty } from 'lodash'
+import Router from '@/router'
 import { setToken } from '@/utils/auth'
 import {
-  createUserWithEmailAndPassword,
-  getAuth,
-  signInWithEmailAndPassword,
   FacebookAuthProvider,
+  getAuth,
   GoogleAuthProvider,
+  RecaptchaVerifier,
+  signInWithEmailAndPassword,
   signInWithPopup
 } from 'firebase/auth'
 import { getDatabase, ref as refdb, set } from 'firebase/database'
-import { defineComponent, ref } from 'vue'
+import { isEmpty } from 'lodash'
 import validate from 'validate.js'
-import Router from '@/router'
+import { defineComponent, ref } from 'vue'
 
 const userRules = {
   email: {
@@ -93,7 +95,9 @@ export default defineComponent({
         if (isEmpty(validationErrs.value)) {
           loading.value = true
           const { user }: any = await signInWithEmailAndPassword(getAuth(), model.value.email, model.value.password)
-          if (user) setToken(user.accessToken)
+          if (user) {
+            setToken(user.accessToken)
+          }
           loading.value = false
           Router.push('/')
         }
@@ -152,8 +156,13 @@ export default defineComponent({
       }
     }
 
-    return { model, login, loading, validationErrs, handlePopupLogin }
-  }
+    const handleClick = () => {
+      let recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {}, auth)
+    }
+
+    return { model, login, loading, validationErrs, handlePopupLogin, handleClick }
+  },
+  component: {}
 })
 </script>
 <style lang="scss" scoped>
@@ -164,6 +173,7 @@ export default defineComponent({
   align-items: center;
 
   width: 100%;
+  min-width: 400px;
   margin-top: 30px;
 }
 
@@ -172,9 +182,7 @@ export default defineComponent({
   margin-top: 20px;
   margin-left: 0 !important;
 }
-.login-form {
-  // width: 50%
-}
+
 .forgot-password {
   margin-top: 10px;
 }

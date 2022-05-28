@@ -65,7 +65,9 @@
               <router-link to="/auth/login">
                 <div class="forgot-password">Already have account? Login now</div>
               </router-link>
-              <a class="forgot-password" href="https://oxfordinformatics.com/">Forgot password ?</a>
+              <router-link to="/auth/forgot-password">
+                <div class="forgot-password">Forgot password ?</div>
+              </router-link>
             </div>
           </el-form>
         </el-card>
@@ -208,6 +210,7 @@ export default defineComponent({
   align-items: center;
 
   width: 100%;
+  min-width: 400px;
   margin-top: 30px;
 }
 
