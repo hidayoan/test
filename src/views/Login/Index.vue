@@ -50,6 +50,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup
 } from 'firebase/auth'
+import { getDatabase, ref as refdb, set } from 'firebase/database'
 import { defineComponent, ref } from 'vue'
 import validate from 'validate.js'
 import Router from '@/router'
