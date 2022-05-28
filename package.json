@@ -1,0 +1,82 @@
+{
+  "name": "cleaning-partner",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "build:staging": "cross-env NODE_ENV=staging vue-cli-service build --mode staging",
+    "lint": "vue-cli-service lint",
+    "eslint": "eslint src/**/*.{ts,vue} --fix"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^1.1.4",
+    "@grafikri/vue-middleware": "^1.0.0",
+    "@vue-stripe/vue-stripe": "^4.4.2",
+    "ant-design-vue": "^3.2.3",
+    "axios": "^0.24.0",
+    "core-js": "^3.6.5",
+    "cross-env": "^7.0.3",
+    "element-plus": "^1.0.2-beta.71",
+    "firebase": "^9.7.0",
+    "js-base64": "^3.6.1",
+    "js-cookie": "^3.0.1",
+    "jwt-decode": "^3.1.2",
+    "lodash": "^4.17.21",
+    "stripe": "^8.186.0",
+    "typed-vuex": "^0.2.0",
+    "validate.js": "^0.13.1",
+    "vue": "^3.0.0",
+    "vue-class-component": "^8.0.0-0",
+    "vue-cropper": "^1.0.2",
+    "vue-fragment": "^1.5.2",
+    "vue-paypal-checkout": "^3.2.0",
+    "vue-read-more": "^1.1.1",
+    "vue-router": "^4.0.0-0",
+    "vue-stripe-checkout": "^3.5.15",
+    "vue-stripe-js": "^1.0.1",
+    "vue3-google-oauth2": "^1.0.6",
+    "vuedraggable": "^4.1.0",
+    "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.5.4",
+    "@types/firebase": "^3.2.1",
+    "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "@typescript-eslint/parser": "^5.10.0",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-typescript": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.0.0",
+    "@vue/eslint-config-typescript": "^7.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-vue": "^8.3.0",
+    "sass": "^1.37.0",
+    "sass-loader": "^10.1.1",
+    "typescript": "^4.3.2"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended",
+      "@vue/typescript"
+    ],
+    "parserOptions": {
+      "parser": "@typescript-eslint/parser"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

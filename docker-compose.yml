@@ -1,0 +1,10 @@
+version: "3.4"
+
+services:
+  rental-partner:
+    image: "rental-partner"
+    build:
+      dockerfile: Dockerfile.test
+    ports:
+      - 4400:4400
+    restart: always
