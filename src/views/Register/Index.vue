@@ -129,9 +129,7 @@ export default defineComponent({
         await signInWithPopup(auth, provider)
           .then(async ({ user }: any) => {
             if (user) {
-              console.log(user)
-
-              writeUserData(user.accessToken, user.email, user.displayName, null, user.email)
+              await writeUserData(user.uid, user.email, user.displayName, null, user.email)
               setToken(user.accessToken)
             }
             loading.value = false
@@ -145,7 +143,6 @@ export default defineComponent({
         const provider = new GoogleAuthProvider()
         await signInWithPopup(auth, provider)
           .then(async ({ user }: any) => {
-            console.log(user)
             if (user) {
               await writeUserData(user.uid, user.email, user.displayName, null, user.email)
               setToken(user.accessToken)

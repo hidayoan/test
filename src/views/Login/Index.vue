@@ -107,8 +107,11 @@ export default defineComponent({
       if (type === 'facebook') {
         const provider = new FacebookAuthProvider()
         await signInWithPopup(auth, provider)
-          .then(({ user }: any) => {
-            if (user) setToken(user.accessToken)
+          .then(async ({ user }: any) => {
+            if (user) {
+              await writeUserData(user.uid, user.email, user.displayName, null, user.email)
+              setToken(user.accessToken)
+            }
             loading.value = false
             Router.push('/')
           })
@@ -119,8 +122,11 @@ export default defineComponent({
       } else {
         const provider = new GoogleAuthProvider()
         await signInWithPopup(auth, provider)
-          .then(({ user }: any) => {
-            if (user) setToken(user.accessToken)
+          .then(async ({ user }: any) => {
+            if (user) {
+              await writeUserData(user.uid, user.email, user.displayName, null, user.email)
+              setToken(user.accessToken)
+            }
             loading.value = false
             Router.push('/')
           })
@@ -128,6 +134,20 @@ export default defineComponent({
             console.log(e)
             loading.value = false
           })
+      }
+    }
+
+    const writeUserData = async (userId, username, firstName, lastName, email) => {
+      try {
+        const db = await getDatabase()
+        await set(refdb(db, 'users/' + userId), {
+          user_name: username,
+          first_name: firstName,
+          last_name: lastName,
+          email: email
+        }).then((value) => console.log('value', value))
+      } catch (error) {
+        console.log(error)
       }
     }
 
